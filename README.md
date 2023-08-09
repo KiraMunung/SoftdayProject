@@ -1,7 +1,7 @@
 # SySco(Système Scolaire)
 Par rapport à l’objectif durable numéro  4 qui se base sur l’évolution de 
 l’éducation, et par rapport à une analyse sur les différents établissements scolaires, 
-j’ai eu à relever quelques problèmes qui concourent à une mauvaise qualité d’éducation des élèves. Pour y remédier,
+j’ai eu à relever quelques problèmes qui concourent à une mauvaise qualité d’éducation des élèves. Pour se faire,
 nous avons mis en place une solution que nous avons baptisée « SySco », 
 qui veut dire « Système Scolaire ». 
 Ce système est une plateforme qui offre plusieurs fonctionnalités en réponse aux problèmes relevés.  
