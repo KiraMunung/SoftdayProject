@@ -1,0 +1,219 @@
+
+
+
+{% load static %}
+
+
+
+<!--    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="card" style="border-color: rgb(0, 172, 172); border-style: solid; border-radius: 10px;">
+                        <div class="card-body">
+                                <form action="" method="POST" novalidate>
+                                    {% csrf_token %}
+                                    <br>
+                                    <label for="username">Nom d'utilisateur</label>
+                                    <br>
+                                    <input class="form-control" id="username" name="username">
+                                    <br>
+                                    <label for="password">Mot de passe </label>
+                                    <input class="form-control" type="password" id="password", name="password">
+                                    <br>
+                                    <input type="submit" value="connecter" class="btn btn-primary">
+        
+                                    <a class="btn btn-primary" href="/reset_password" role="button">Mot de passe oublié</a>
+                                    <br>
+                                    <br>
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %} >
+                                                <div class="alert alert-primary d-flex align-items-center" role="alert" style="background-color: rgb(230, 79, 79); color: white;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                                                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                    </svg>
+                                                    <div>
+                                                    {{ message }}
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}                                        
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/login.css' %}">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'programmes/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/templatemo-edu-meeting.css' %}">
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/lightbox.css' %}">
+    <title>login</title>
+</head>
+<body>
+    <div class="sub-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-sm-8">
+              <div class="left-content">
+                <!--<p>This is an educational <em>HTML CSS</em> template by TemplateMo website.</p>-->
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+              <div class="right-icons">
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ***** Header Area Start ***** -->
+      <header class="header-area header-sticky">
+          <div class="container">
+              <div class="row">
+                  <div class="col-12">
+                      <nav class="main-nav">
+                          <!-- ***** Logo Start ***** -->
+                          <a href="{% url 'acceuil' %}" class="logo">
+                              SySco
+                          </a>
+                          <!-- ***** Logo End ***** -->
+                          <!-- ***** Menu Start ***** -->
+                          <ul class="nav">
+                              <li class="scroll-to-section"><a href="{% url 'acceuil' %}" class="active">Acceuil</a></li>
+                              {% if user.is_authenticated %}
+                              <li><a href="{% url 'programmes:niveaulist' %}">Cours</a></li>
+                              <li><a href="{% url 'classes' %}">Repechage</a></li>
+                              {% else %}
+                              <li class="has-sub">
+                                  <a href="javascript:void(0)">Connexion</a>
+                                  <ul class="sub-menu">
+                                      <li><a href="{% url 'login' %}">S'identifier</a></li>
+                                      <li><a href="meeting-details.html">S'inscrire</a></li>
+                                  </ul>
+                              </li>
+                              {% endif %}
+                              {% if user.is_authenticated %}
+                                <li class="scroll-to-section">
+                                    <a href="#courses">
+
+                                        <button type="button" class="btn btn-primary position-relative" style="background-color: orange; color: black; font-weight: bold;">
+                                            {{request.user.username }}
+                                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                              <span class="visually-hidden">New alerts</span>
+                                            </span>
+                                        </button>
+
+                                    </a>
+                                </li>
+                              {% endif %}
+
+                          </ul>
+                          <a class='menu-trigger'>
+                              <span>Menu</span>
+                          </a>
+                          <!-- ***** Menu End ***** -->
+                      </nav>
+                  </div>
+              </div>
+          </div>
+      </header>
+      <!-- ***** Header Area End ***** -->
+
+      <!-- ***** Main Banner Area Start ***** -->
+
+    <div class="contanier">
+        <div class="div-form">
+            <h1 id="st">Connexion</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="inp">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder="Nom d'utilisateur">
+
+                </div>
+                <div class="inp">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password", name="password" placeholder="Mot de Passe">
+                    <i class="fa-solid fa-eye eyes"></i>
+
+                </div>
+                <div class="check">
+                    <input type="checkbox">
+                    <span>Souviens-toi de moi</span>
+                </div>
+                <button class="btn" type="submit">s'identifier</button>
+                <span class="spn-regs">Mot de passe oublié? <a href="{% url 'reset_password' %}">Cliquez ici</a></span>
+                <br>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}  style="width: 50%; margin: auto;">
+                                <div class="alert alert-primary d-flex align-items-center" role="alert" style="background-color: rgb(230, 79, 79); color: white;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                    </svg>
+                                    <div>
+                                        {{ message }}
+                                    </div>
+                                </div>
+                            </li>
+
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </form>
+
+        </div>
+        <div class="div-text">
+            <div class="image">
+                <img src="{% static 'programmes/assets/images/login1.png' %}" alt="">
+            </div>
+
+        </div>
+    </div>
+    <script src="{% static 'programmes/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'programmes/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'programmes/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/tabs.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/video.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/slick-slider.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/custom.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+body{
+
+    margin: 25px;
+    
+}
+
+
+.barre{
+
+    border-style: solid;
+    border-radius: 20px;
+    border-color: rgb(31, 31, 209);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-top: 15px;
+    padding-left: 60px;
+    font-size: 20px;
+
+}
+.barre a{
+
+    text-decoration: none;
+    color: rgb(1, 187, 125);
+}
+.welcom{
+
+    padding-left: 30%;
+}
+.welcom p{
+
+    font-family: cursive;
+    font-size: 25px;
+}
+
+
+
+
+#footer{
+
+        background-image: url("images/footer-bg.jpg");
+        display: flex;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        
+        
+}
+
+
+
+.blog1{
+
+    
+    margin-left: 70px;
+
+}
+
+.blog2{
+
+   
+    margin-left: 220px;
+}
+
+.blog3{
+
+   
+    margin-left: 250px;
+    
+}
+
+#footer h6{
+
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: 8px;
+}
+#foo{
+
+    color: yellow;
+}
+
+#footer a{
+
+    text-decoration: none;
+}
+
+#na{
+
+    position: fixed;
+}
+#logo{
+
+
+    display: flex;
+    margin-top: 30px;
+    margin-left: 4px;
+}
+
+#logo img{
+
+
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+}
+#to{
+
+    border-radius: 100px;
+}
+
+.ico{
+
+    height: 25px;
+    width: 25px;
+    border-radius: 10px;
+}
+
+#esi{
+
+    margin-top: 15px;
+    height: 40px;
+}
+.contenair{
+
+    
+    
+    max-width: 1200px;
+    max-height: 6500px;
+
+}
+
+#bi{
+
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
+
+#mai{
+
+    margin-left: 50px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin-bottom: 15px;
+}
+
+#act{
+
+    
+    margin-left: 50px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    margin-bottom: 4px;
+
+}
+
+#pop{
+
+   
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    margin-top: 15px;
+   
+}
+
+#even{
+
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    margin-top: 15px;
+}
+
+
+#OI{
+
+    width: 80px;
+    height: 80px;
+    border-radius: 30px;
+    margin-top: 15px;
+
+}

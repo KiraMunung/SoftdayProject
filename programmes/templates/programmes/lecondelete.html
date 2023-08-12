@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h1>Etes-vous sur de vouloir supprimer ?</h1>
+    <form method="POST">
+        {% csrf_token %}
+       
+        <input type="submit" value="supprimer definitivement" class="btn btn-danger">
+        <a class="btn btn-primary" href="{% url 'programmes:leconlistdetail' slug=lecon.slug matiere=lecon.matiere.slug niveau=lecon.niveau.slug %}" role="button">Annuler la suppression</a>
+    </form>
+
+
+{% endblock %}

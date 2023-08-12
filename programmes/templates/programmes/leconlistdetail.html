@@ -1,0 +1,208 @@
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/login.css' %}">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'programmes/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/templatemo-edu-meeting.css' %}">
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/lightbox.css' %}">
+    <title>login</title>
+</head>
+<body>
+
+     <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+            <p>This is an educational <em>HTML CSS</em> template by TemplateMo website.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="index.html" class="logo">
+                          SySco
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                          <li class="scroll-to-section"><a href="#top" class="active">Acceuil</a></li>
+                          {% if user.is_authenticated %}
+                          <li><a href="{% url 'programmes:niveaulist' %}">Cours</a></li>
+                          <li><a href="{% url 'classes' %}">Repechage</a></li>
+                          <li><a href="{% url 'logout' %}">Déconnecter</a></li>
+                          {% else %}
+                          <li class="has-sub">
+                              <a href="javascript:void(0)">Connexion</a>
+                              <ul class="sub-menu">
+                                  <li><a href="{% url 'login' %}">S'identifier</a></li>
+                                  <li><a href="{% url 'register' %}">S'inscrire</a></li>
+                              </ul>
+                          </li>
+                          {% endif %}
+                          {% if user.is_authenticated %}
+                                <li class="scroll-to-section">
+                                    <a href="#courses">
+
+                                        <button type="button" class="btn btn-primary position-relative" style="background-color: orange; color: black; font-weight: bold;">
+                                            {{request.user.username }}
+                                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                              <span class="visually-hidden">New alerts</span>
+                                            </span>
+                                        </button>
+
+                                    </a>
+                                </li>
+                          {% endif %}
+                      </ul>
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <section class="heading-page header-text" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Here are our upcoming meetings</h6>
+          <h2>Upcoming Meetings</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+    
+
+
+        <p>la leçon intitulée {{ lecon.nom }} à été créer par {{ lecon.creer_par }}</p><br>
+        
+        {% if user.is_authenticated %}
+        <div style="background-color: black;">
+                <div id="lec" style="padding: 30px;">
+                {% if lecon.video %}
+                        <div>
+                                <video width="320" height="240" controls> <source src="{{ lecon.video.url }}" type="video/mp4">Votre navigateur ne supporte pas la video.</video>
+                                <P><a href="{{ lecon.video.url }}" download style="text-decoration: none;"> Télécharger la video</a></P>
+                                <br>
+                               
+                                
+
+                        </div>
+                {% else%}
+                        <p>Désolé! aucune video pour cette leçon</p>
+                {% endif %}
+                {% if lecon.pdf%}
+                        <div>
+                                <p><a href="{{ lecon.pdf.url }}" target="_blank" style="text-decoration: none;">Ouvrir le PDF</a><a href="{{ lecon.pdf.url }}" download style="text-decoration: none;"><ion-icon name="cloud-upload-outline"> Télécharger le PDF</ion-icon></a></p>
+                                <ion-icon name="cloud-upload-outline"></ion-icon>
+                        </div>
+                {% else%}
+                        <p>Désolé! aucun pdf pour cette leçon</p>
+                {% endif %}
+                        
+        
+                {% if user.is_superuser %}
+                <a href="{% url 'programmes:leconupdate' niveau=lecon.niveau.slug matiere=lecon.matiere.slug slug=lecon.slug %}"><button type="button" class="btn btn-warning">Modifier la leçon</button></a>
+                <a href="{% url 'programmes:lecondelete' niveau=lecon.niveau.slug matiere=lecon.matiere.slug slug=lecon.slug %}"><button type="button" class="btn btn-danger">Supprimer la leçon</button></a>
+                {% endif %}
+                <br>
+                <br>
+                </div>
+                <div id="lec">
+                        <img src="{% static 'programmes/images/banner_genie_log (1).png' %}" alt="" width="300px">
+                </div>
+        </div>
+        {% endif %}
+        <br>
+        <br>
+        <h4>Postez votre commentaire ici bas.</h4>
+        <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                        {{ form.as_p }}
+                        <br>
+                        <input type="submit" name="form" value="commentez" class="btn btn-primary btn-sm">
+
+
+                </div>
+
+
+        </form>
+
+        {% for comment in lecon.comments.all %}
+                <h4>{{ comment.auteur }} <small><i>poster le {{ comment.date_added }}</i></small></h4>
+                <p>{{ comment.corps }}</p>
+                {% for reponse in comment.reponses.all %}
+
+                        <h5>{{ reponse.auteur }} <small><i>poster le {{ reponse.date_added }}</i></small></h5>
+                        <p>{{ reponse.corps }}</p>
+
+                {% endfor %}
+
+                <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                        {{ form2.as_p }}
+                        <br>
+                        <input type="submit" name="form2" value="Repondez" class="btn btn-warning btn-sm">
+
+                </form><br>
+        {% endfor %}
+
+
+                    <script src="{% static 'programmes/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'programmes/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'programmes/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/tabs.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/video.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/slick-slider.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/custom.js' %}"></script>
+
+
+</body>
+</html>
+

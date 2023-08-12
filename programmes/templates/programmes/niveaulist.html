@@ -1,0 +1,185 @@
+
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/login.css' %}">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'programmes/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/templatemo-edu-meeting.css' %}">
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'programmes/assets/css/lightbox.css' %}">
+    <title>login</title>
+</head>
+<body>
+
+     <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+            <p>This is an educational <em>HTML CSS</em> template by TemplateMo website.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="index.html" class="logo">
+                          SySco
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                          <li class="scroll-to-section"><a href="#top" class="active">Acceuil</a></li>
+                          {% if user.is_authenticated %}
+                          <li><a href="{% url 'programmes:niveaulist' %}">Cours</a></li>
+                          <li><a href="{% url 'classes' %}">Repechage</a></li>
+                          <li><a href="{% url 'logout' %}">Déconnecter</a></li>
+                          {% else %}
+                          <li class="has-sub">
+                              <a href="javascript:void(0)">Connexion</a>
+                              <ul class="sub-menu">
+                                  <li><a href="{% url 'login' %}">S'identifier</a></li>
+                                  <li><a href="{% url 'register' %}">S'inscrire</a></li>
+                              </ul>
+                          </li>
+                          {% endif %}
+                          {% if user.is_authenticated %}
+                                <li class="scroll-to-section">
+                                    <a href="#courses">
+
+                                        <button type="button" class="btn btn-primary position-relative" style="background-color: orange; color: black; font-weight: bold;">
+                                            {{request.user.username }}
+                                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                              <span class="visually-hidden">New alerts</span>
+                                            </span>
+                                        </button>
+
+                                    </a>
+                                </li>
+                          {% endif %}
+                      </ul>
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <section class="heading-page header-text" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Here are our upcoming meetings</h6>
+          <h2>Upcoming Meetings</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+    <br>
+
+   <!-- <section class="articles">
+        {% for niveau in niveaux %}
+        <article>
+          <div class="article-wrapper">
+            <figure>
+              <img src=" /media/{{ niveau.image }}" alt="" />
+            </figure>
+            <div class="article-body">
+              <h2>{{ niveau.nom }}</h2>
+              <p>
+                {{ niveau.description }}
+              </p>
+              <a href="{% url 'programmes:matierelist' slug=niveau.slug %}" class="read-more">
+                voir plus <span class="sr-only">about this is some title</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+
+    </section>-->
+
+     <div class="container" style="padding-top: 5%;">
+                        <div class="row">
+                            {% for niveau in niveaux %}
+                                <div class="col-md-4 mt-5">
+                                    <div class="card card-custom bg-dark shadow">
+                                        <div class="card-custom-img" style="background-color: rgb(7, 124, 145);">
+
+                                            <div class="card-body" data-spy="scroll" style="overflow-y: auto;">
+                                                <h3 class="card-title text-white"> {{ niveau.nom }} </h3>
+                                                <div class="card-text text-white">
+                                                    <p id="description">
+                                                        {{ niveau.description }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer bg-transparent">
+                                            <a href="{% url 'programmes:matierelist' slug=niveau.slug %}" class="btn btn-primary">Voir plus</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                        <br>
+     </div>
+
+             <script src="{% static 'programmes/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'programmes/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'programmes/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/tabs.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/video.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/slick-slider.js' %}"></script>
+    <script src="{% static 'programmes/assets/js/custom.js' %}"></script>
+
+
+</body>
+</html>

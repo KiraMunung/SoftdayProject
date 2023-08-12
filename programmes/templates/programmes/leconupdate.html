@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="confirmer la modification">
+        <a href="{% url 'programmes:leconlistdetail' slug=lecon.slug matiere=lecon.matiere.slug niveau=lecon.niveau.slug %}">annuler la modification</a>
+    </form>
+
+
+{% endblock %}
